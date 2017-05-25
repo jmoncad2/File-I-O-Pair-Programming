@@ -1,3 +1,5 @@
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.nio.file.StandardOpenOption;
 import java.util.ArrayList;
 import java.util.List;
@@ -17,6 +19,8 @@ public class mainTest {
         String directory = "data";
         String filename = "contacts.txt";
 
+        String contactName = "";
+        String contactNumber = "";
 
         Path dataDirectory = Paths.get(directory);
         Path dataFile = Paths.get(directory, filename);
@@ -40,14 +44,16 @@ public class mainTest {
                 // enter the number
                 // contacts.add( name + "|" + number)
                 System.out.println("What is the name of the contact?");
-                String contactName = input.next();
+                contactName = input.next();
                 System.out.println("What is the contact number?");
-                String contactNumber = input.next();
+                contactNumber = input.next();
                 phones.add((contactName + " | " + contactNumber));
                 Files.write(dataFile, phones, StandardOpenOption.APPEND);
                 break;
             case 3:
-
+                System.out.println("To search, please enter a name");
+                String search = input.next();
+                parseFile(dataFile, search);
                 break;
             case 4:
 
@@ -76,11 +82,16 @@ public class mainTest {
         return option;
     }
 
-//    public static String entry(Scanner input){
-//        String name = input.nextLine();
-//        input.nextLine();
-//        return name;
-//    }
+    public static void parseFile(Path fileName,String searchStr) throws FileNotFoundException{
+        Scanner scan = new Scanner(new File(fileName.toString())).useDelimiter("\n");
+        while(scan.hasNext()){
+            String line = scan.nextLine().toLowerCase().toString();
+            if(line.contains(searchStr.toLowerCase())){
+                System.out.println(line);
+            }
+        }
+    }
+
 
 
 
