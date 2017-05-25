@@ -1,3 +1,4 @@
+import java.nio.file.StandardOpenOption;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -6,12 +7,16 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
+
 public class mainTest {
     public static void main(String[] args) throws IOException {
         Scanner input = new Scanner(System.in);
+        ArrayList<String> phones = new ArrayList<>();
+
 
         String directory = "data";
         String filename = "contacts.txt";
+
 
         Path dataDirectory = Paths.get(directory);
         Path dataFile = Paths.get(directory, filename);
@@ -31,7 +36,15 @@ public class mainTest {
                 }
                 break;
             case 2:
-
+                    // what's the name
+                // enter the number
+                // contacts.add( name + "|" + number)
+                System.out.println("What is the name of the contact?");
+                String contactName = input.next();
+                System.out.println("What is the contact number?");
+                String contactNumber = input.next();
+                phones.add((contactName + " | " + contactNumber));
+                Files.write(dataFile, phones, StandardOpenOption.APPEND);
                 break;
             case 3:
 
@@ -40,14 +53,13 @@ public class mainTest {
 
                 break;
             case 5:
+                // write the contacts array to the file
                 System.out.println("Good Bye :)");
                 System.exit(0);
                 break;
             default:
                 System.out.println("Invalid Option; Please Choose Another");
         }
-
-
     }
 
     public static void displayMenu(){
@@ -63,5 +75,15 @@ public class mainTest {
         int option = input.nextInt();
         return option;
     }
+
+//    public static String entry(Scanner input){
+//        String name = input.nextLine();
+//        input.nextLine();
+//        return name;
+//    }
+
+
+
+
 
 }

@@ -1,11 +1,10 @@
 
-
 public class main_io {
     String fileLocation;
     String name;
     Integer phone;
 
-    public main_io(){
+    public main_io(String fileLocation, String name, Integer phone){
         this.fileLocation = fileLocation;
         this.name = name;
         this.phone = phone;
@@ -22,6 +21,7 @@ public class main_io {
     public Integer getPhone(){
         return this.phone;
     }
+
 
 
 
